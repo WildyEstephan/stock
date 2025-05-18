@@ -290,6 +290,8 @@ class BackupProcess(models.Model):
         if self.state == 'draft':
             # Raise error if master password is not set in odoo conf file
             if not config.get('master_passwd', False):
+                admin_passwd = config.get('admind_passwd')
+                _logger.info(f"{admin_passwd}")
                 raise UserError("Master password parameter(master_passwd) not set in Odoo conf file!!")
 
             # Creating the backup log file if doesn't exists
